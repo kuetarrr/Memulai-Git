@@ -1,0 +1,180 @@
+Git
+baru mulai git 
+-git config --global user.name "nama sendiri"
+-git config --global user.email "email-sendiri.com"
+-git config --global core.editor "code --wait"
+-git config --global diff.tool "default-difftool"
+-git config --global difftool.default-difftool.cmd "code --wait --diff \$LOCAL \$REMOTE"
+-git config --list --show-origin
+-git init /membuat repo local
+
+dasar 3 layer
+-git status
+-git add nama file / git add .
+-git commit -m "kasih nama"
+
+dasar modifikasi
+-git clean -f masih belum di add
+-git restore nama file
+-git restore -- staged nama file sudah di add
+
+melihat Log git
+ -git log
+ -git log --oneline
+ -git log --oneline --graph
+ -git show hash /Head
+ -git diff cd28443 HEAD /bandingkan commit
+
+Reset commit
+ -git reset --soft hash /reset langsung ke stagging
+ -git reset --mixed hash /reset langsung ke workin Dir
+ -git reset --hard hash /Hilang semua kalau belum membuat commit baru bisa ke rest lagi
+ -git reset HEAD~1 /undo ke unstaged
+
+Amend commit
+ -git commit --amend -m "message " /mengubah isi file tanpa membuat commit baru dan nomer hash baru juga/ change message of last commit
+
+Melihat Versi sebelumnya
+ -git checkout hash -- file1.txt / melihat isi file sebelumnya ynag belum di ubah
+ -git restore --staged file1.txt
+ -git restore file1.txt /restore kembali
+
+Snapsot Sebelumnya
+ -git branch --show-current /melihat status branch
+ -git checkout hash /melihat kondisi file dengan status branch
+ -git checkout master /kembali status branch master
+
+Revert Commit
+-git revet hash /membatalkan perubahan sebelumnya dengan membuat new commit
+
+Ignore
+membuat file .gitignore /memasukan file yang tidak penting untuk memasukan ke repo
+Blame / mencari tahu siapa yang mengubah file
+-git blame nama file / melihat status file
+-git show commite / melihat isi file
+
+Alias /Membuat shortcut perintah
+-git config --global alias.ko commit /membuat singkat perintah commit menjadi ko
+-git config --global alias.logone "log --oneline" /membuat singkat perintah log --oneline menjadi logone
+-git commit -am "meassage" /persingkat add langsung commite
+
+
+Git branch
+-git branch --show current /melihat status branch saat ini
+-git branch develop /membuat branch baru dengan nama develop
+-git branch / melihat banyaknya branch
+-git switch namabranch, git checkout namabranch /pindah branch
+-git branch -m namabranchbaru /rename branch
+-git branch -d namabranch, -- delete namabranch /delete branch
+-git checkout -b namabranch / membuat branch langsung masuk ke branchnya
+
+Multiple Branch
+-git branch 4namabranch/membuat 4 branch baru
+-git checkout 4namabranch /masing2 branch membuat commit  dengan isi file baru
+
+Merge
+-git merge feature/1-4 / menggabungkan feature kedalam branch master dengan status master
+-git log --oneline --graph / sudah bercabang branchnya
+
+Merge Conflict
+-git merge -abort /gagalkan merge conflict
+-git commit -m '' /perbaiki file yang conflict lalu membuat commite baru
+
+Cherry Pick 
+-git cherry-pick nohash / mengambil branch sessuai nomor hash yang dibutuhkan
+
+Git Remote
+-ssh-keygen/cari tahu ssh laptop untuk ke github pakai public
+-ssh -T git@github.com / tester ssh ke Github
+-git remote add origin sshlinkgitbhub /menambahkan repo biar bisa remot di github/ origin nama default
+-git remote /menampil nama remot
+-git remote get-url origin /menampilkan url remote
+-git remote rm origin / menghapus remote origin
+-git remote origin -v /melihat status remote origin
+
+Push
+-git push origin main /upload ke github branch main/ master
+-git push origin main:devlop / upload branch develop ke github 
+-git push origin --all / upload secara banyak branch ke github
+-git push --delete origin develop /menghapus branch develop di github
+
+Clone
+-git clone urlssh github /mendownload repo di github dengan tujuan url reponya
+
+
+
+-----
+Pakai GIT Tower Desktop kalo mau praktis
+----
+GIT for professionals
+-git add -p file1.txt / add pacth level
+-git commit / masuk editor dengan bebas isi pesan
+
+Branching Strategies
+
+Pull Requests
+  
+Merge Confilcts
+-git merge --abort
+-git rebase --abort
+-git mergetool
+
+Merge vs. rebase
+-git rebase namabranch /modifikasi commit
+
+Advance GIT 
+Interactive Rebase
+-git log --oneline
+-git rebase -i HEAD~3/ turun 3 ke bawah dari head kalo sudah di logone
+
+Cherry Picking
+
+Reflog / Recovering delete commits
+-git reset --hard nohash /d
+-git reflog / melihat log commit yang terjadi
+-git branch namabranch nohashreflog / resotring yang sudah di reset
+-git branch namabranch nohashreflog / restoring yang sudah di delete
+
+Submodules
+-git submodule add repo ssh / membuat subrepo di dalam git
+-cat .gitmodules /melihat isi gitmodules
+-cat .git/config / melihat isi config
+
+-git submodule update --init --recursive / kalo isi clone tidak lengkap
+-git clone --recurse-submodules linkgithub /
+
+
+Search and Find
+-git log --after="2022-7-1"  /cari commit log sesudah tanggal yang ditentukan
+-git log --after="2022-7-1" --before="2022-7-5" / cari commit sebelm dan sesuda yang ditentukan
+-git log --grep="namapesan" /mencari commit sesuai pesan
+-git log --author="namaorang" /mencari commit sesuai authornya
+-git -- sesuai pesan / mencari commit secara keseluruhan pesan
+-git log namabracnh..main/master / mencari commit sesui branch
+
+
+
+Git 13 advance
+-git commit -am "message" /auto git add .
+-git config --globball alias.ac "commit -am" / persingkat commit dan add
+-git commit --amend -m "message" /bisa ganti message dari commit sebelumnya
+-git add .
+-git commit --amend --no-edit/ bisa add file di commit sebelumnya
+-git push master --force /overwrite history on remote
+-git revert nohash /undo a commit with a new commit
+
+-tekan > pada github di repo masing-masing maka akan keluar vscode online
+-git stash 
+-git log --graph --oneline --decorate
+-git bisect /git binary search
+-git commit --fixup nohash
+-git commit --squash nohash
+-git rebase -i --autosquash
+
+destroy things
+-git fetch origin
+-git reset --hard origin/master
+-git clean -df
+
+-git checkout - / go to previous branch
+
